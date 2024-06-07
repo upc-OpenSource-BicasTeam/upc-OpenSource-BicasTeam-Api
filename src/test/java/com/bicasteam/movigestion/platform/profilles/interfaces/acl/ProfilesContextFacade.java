@@ -1,5 +1,10 @@
 package com.bicasteam.movigestion.platform.profilles.interfaces.acl;
 
+import com.bicasteam.movigestion.platform.profilles.domain.model.commands.CreateProfileCommand;
+import com.bicasteam.movigestion.platform.profilles.domain.model.queries.GetProfileByEmailQuery;
+import com.bicasteam.movigestion.platform.profilles.domain.model.valueobjects.EmailAddress;
+import com.bicasteam.movigestion.platform.profilles.domain.services.ProfileCommandService;
+import com.bicasteam.movigestion.platform.profilles.domain.services.ProfileQueryService;
 import org.springframework.stereotype.Service;
 
 @Service

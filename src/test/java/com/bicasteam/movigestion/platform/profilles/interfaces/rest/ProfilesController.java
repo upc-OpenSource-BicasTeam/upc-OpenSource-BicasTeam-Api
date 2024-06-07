@@ -1,5 +1,13 @@
 package com.bicasteam.movigestion.platform.profilles.interfaces.rest;
 
+import com.bicasteam.movigestion.platform.profilles.domain.model.commands.CreateProfileCommand;
+import com.bicasteam.movigestion.platform.profilles.domain.model.queries.GetProfileByIdQuery;
+import com.bicasteam.movigestion.platform.profilles.domain.services.ProfileCommandService;
+import com.bicasteam.movigestion.platform.profilles.domain.services.ProfileQueryService;
+import com.bicasteam.movigestion.platform.profilles.interfaces.rest.resources.CreateProfileResource;
+import com.bicasteam.movigestion.platform.profilles.interfaces.rest.resources.ProfileResource;
+import com.bicasteam.movigestion.platform.profilles.interfaces.rest.transform.CreateProfileCommandFromResourceAssembler;
+import com.bicasteam.movigestion.platform.profilles.interfaces.rest.transform.ProfileResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,7 +33,7 @@ public class ProfilesController {
      */
     @PostMapping
     public ResponseEntity<ProfileResource> createProfile(@RequestBody CreateProfileResource resource) {
-        var createProfileCommand = CreateProfileCommandFromResourceAssembler.toCommandFromResource(resource);
+        CreateProfileCommand createProfileCommand = CreateProfileCommandFromResourceAssembler.toCommandFromResource(resource);
         var profileId = profileCommandService.handle(createProfileCommand);
         if (profileId == 0L) {
             return ResponseEntity.badRequest().build();
