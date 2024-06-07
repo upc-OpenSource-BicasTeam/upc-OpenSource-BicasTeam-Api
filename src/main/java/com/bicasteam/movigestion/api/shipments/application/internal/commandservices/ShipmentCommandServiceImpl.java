@@ -1,8 +1,10 @@
-package com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.application.internal.commandservices;
+package com.bicasteam.movigestion.api.shipments.application.internal.commandservices;
 
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.model.aggregates.Shipment;
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.infrastructure.persistence.jpa.repositories.ShipmentRepository;
+import com.bicasteam.movigestion.api.shipments.domain.model.aggregates.Shipment;
+import com.bicasteam.movigestion.api.shipments.infrastructure.persistence.jpa.repositories.ShipmentRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ShipmentCommandServiceImpl {
     private final ShipmentRepository shipmentRepository;
 
@@ -33,4 +35,5 @@ public class ShipmentCommandServiceImpl {
         shipmentRepository.delete(shipment);
     }
 
+    // Otros métodos según sea necesario, como buscar por estado, fecha, etc.
 }

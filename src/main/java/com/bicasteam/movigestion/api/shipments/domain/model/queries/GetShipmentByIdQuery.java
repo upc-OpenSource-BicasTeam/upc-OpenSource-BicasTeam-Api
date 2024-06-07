@@ -1,4 +1,4 @@
-package com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.model.queries;
+package com.bicasteam.movigestion.api.shipments.domain.model.queries;
 
 public class GetShipmentByIdQuery {
     private Long id;

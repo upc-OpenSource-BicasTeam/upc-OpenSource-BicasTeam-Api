@@ -1,11 +1,11 @@
-package com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.interfaces.rest;
+package com.bicasteam.movigestion.api.shipments.interfaces.rest;
 
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.model.aggregates.Shipment;
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.model.commands.CreateShipmentCommand;
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.model.queries.GetAllShipments;
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.model.queries.GetShipmentByIdQuery;
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.services.ShipmentCommandService;
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.services.ShipmentQueryService;
+import com.bicasteam.movigestion.api.shipments.domain.model.aggregates.Shipment;
+import com.bicasteam.movigestion.api.shipments.domain.model.commands.CreateShipmentCommand;
+import com.bicasteam.movigestion.api.shipments.domain.model.queries.GetAllShipments;
+import com.bicasteam.movigestion.api.shipments.domain.model.queries.GetShipmentByIdQuery;
+import com.bicasteam.movigestion.api.shipments.domain.services.ShipmentCommandService;
+import com.bicasteam.movigestion.api.shipments.domain.services.ShipmentQueryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

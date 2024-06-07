@@ -1,4 +1,4 @@
-package com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.model.aggregates;
+package com.bicasteam.movigestion.api.shipments.domain.model.aggregates;
 
 import java.time.LocalDateTime;
 import java.time.LocalDate;

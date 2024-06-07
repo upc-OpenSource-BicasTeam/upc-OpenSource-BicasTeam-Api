@@ -1,8 +1,8 @@
-package com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.services;
+package com.bicasteam.movigestion.api.shipments.domain.services;
 
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.application.internal.commandservices.ShipmentCommandServiceImpl;
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.model.aggregates.Shipment;
-import com.bicasteam.movigestion.api.shared.infrastructure.persistence.jpa.strategy.shipments.domain.model.commands.CreateShipmentCommand;
+import com.bicasteam.movigestion.api.shipments.application.internal.commandservices.ShipmentCommandServiceImpl;
+import com.bicasteam.movigestion.api.shipments.domain.model.aggregates.Shipment;
+import com.bicasteam.movigestion.api.shipments.domain.model.commands.CreateShipmentCommand;
 import org.springframework.stereotype.Component;
 
 @Component
