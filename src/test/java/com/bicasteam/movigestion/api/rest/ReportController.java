@@ -1,5 +1,9 @@
 package com.bicasteam.movigestion.api.rest;
 
+import com.bicasteam.movigestion.api.application.commands.CreateReportCommand;
+import com.bicasteam.movigestion.api.domain.model.aggregates.Report;
+import com.bicasteam.movigestion.api.domain.services.ReportCommandService;
+import com.bicasteam.movigestion.api.domain.services.ReportQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
