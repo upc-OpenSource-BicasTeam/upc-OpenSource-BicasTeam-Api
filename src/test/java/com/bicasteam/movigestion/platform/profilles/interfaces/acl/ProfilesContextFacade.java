@@ -12,8 +12,8 @@ public class ProfilesContextFacade {
         this.profileQueryService = profileQueryService;
     }
 
-    public Long createProfile(String firstName, String lastName, String email, String street, String number, String city,String country) {
-        var createProfileCommand = new CreateProfileCommand(firstName, lastName, email, street, number, city, country);
+    public Long createProfile(String firstName, String lastName, String email, String street, String number, String city) {
+        var createProfileCommand = new CreateProfileCommand(firstName, lastName, email, street, number, city);
         return profileCommandService.handle(createProfileCommand);
     }
 
