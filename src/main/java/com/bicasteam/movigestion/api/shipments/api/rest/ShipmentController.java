@@ -1,14 +1,20 @@
 package com.bicasteam.movigestion.api.shipments.api.rest;
 
 import com.bicasteam.movigestion.api.shipments.application.commands.CreateShipmentCommand;
+import com.bicasteam.movigestion.api.shipments.application.commands.DateTimeContainer;
 import com.bicasteam.movigestion.api.shipments.domain.model.aggregates.Shipment;
 import com.bicasteam.movigestion.api.shipments.domain.services.ShipmentCommandService;
 import com.bicasteam.movigestion.api.shipments.domain.services.ShipmentQueryService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -37,14 +43,63 @@ public class ShipmentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Shipment createShipment(@RequestBody CreateShipmentCommand command) {
-        Shipment shipment = new Shipment(command.idUserDestiny(), command.description(), command.dateTime(), command.status());
-        return shipmentCommandService.createShipment(shipment);
+    public ResponseEntity<ShipmentDto> createShipment(@RequestBody CreateShipmentCommand command) {
+        LocalDateTime dateTime = LocalDateTime.of(
+                LocalDate.parse(command.dateTime().date()),
+                LocalTime.parse(command.dateTime().time())
+        );
+        Shipment shipment = new Shipment(
+                Long.parseLong(command.idUser()),
+                command.destiny(),
+                command.description(),
+                dateTime,
+                command.status()
+        );
+        Shipment savedShipment = shipmentCommandService.createShipment(shipment);
+        ShipmentDto shipmentDto = mapToShipmentDto(savedShipment);
+        return ResponseEntity.status(HttpStatus.CREATED).body(shipmentDto);
     }
+    private ShipmentDto mapToShipmentDto(Shipment shipment) {
+        return new ShipmentDto(
+                shipment.getId(),
+                shipment.getIdUserDestiny(),
+                shipment.getDestiny(),
+                shipment.getDescription(),
+                new DateTimeContainer(
+                        shipment.getDateTime().toLocalDate().toString(),
+                        shipment.getDateTime().toLocalTime().toString()
+                ),
+                shipment.getStatus()
+        );
+    }
+
+
+
+    @Data
+    @AllArgsConstructor
+    public static class ShipmentDto {
+        private Long id;
+        private Long idUser;
+        private String destiny;
+        private String description;
+        private DateTimeContainer dateTime;
+        private String status;
+    }
+
+
+
+
+
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteShipment(@PathVariable Long id) {
-        shipmentCommandService.deleteShipment(id);
+    public ResponseEntity<Void> deleteShipment(@PathVariable Long id) {
+        if (shipmentQueryService.getShipmentById(id).isPresent()) {
+            shipmentCommandService.deleteShipment(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 }

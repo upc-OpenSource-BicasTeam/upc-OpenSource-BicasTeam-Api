@@ -18,6 +18,9 @@ public class Shipment {
     private Long idUserDestiny;
 
     @Column(nullable = false)
+    private String destiny;
+
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
@@ -26,10 +29,12 @@ public class Shipment {
     @Column(nullable = false)
     private String status;
 
-    public Shipment(Long idUserDestiny, String description, LocalDateTime dateTime, String status) {
-        this.idUserDestiny = idUserDestiny;
+    public Shipment(Long idUser, String destiny, String description, LocalDateTime dateTime, String status) {
+        this.idUserDestiny = idUser;
+        this.destiny = destiny;
         this.description = description;
         this.dateTime = dateTime;
         this.status = status;
     }
+
 }
