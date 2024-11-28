@@ -1,24 +1,13 @@
 package com.bicasteam.movigestion.api.shipments.domain.services;
 
 import com.bicasteam.movigestion.api.shipments.domain.model.aggregates.Shipment;
-import com.bicasteam.movigestion.api.shipments.domain.repositories.ShipmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.bicasteam.movigestion.api.shipments.domain.model.commands.CreateShipmentCommand;
 
-@Service
-public class ShipmentCommandService {
-    private final ShipmentRepository shipmentRepository;
+import java.util.Optional;
 
-    @Autowired
-    public ShipmentCommandService(ShipmentRepository shipmentRepository) {
-        this.shipmentRepository = shipmentRepository;
-    }
+public interface ShipmentCommandService {
+    Optional<Shipment> handle(CreateShipmentCommand command);
+    void deleteById(int id);
+    void updateStatus(int id, String status);
 
-    public Shipment createShipment(Shipment shipment) {
-        return shipmentRepository.save(shipment);
-    }
-
-    public void deleteShipment(Long shipmentId) {
-        shipmentRepository.deleteById(shipmentId);
-    }
 }
